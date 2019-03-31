@@ -24,7 +24,7 @@ void setup()
   pixels.begin();
   Blynk.begin("78ba576f1d0e47489a2368cc50678032", "FRITZ!Box Scheufele", "Scheufele2016", "scheufele.ddns.net", 8080);
   timer.setInterval(30L, updateLED);
-  timer.setInterval(300L, colorcalc);
+  timer.setInterval(100L, colorcalc);
   timer.setInterval(30L, transition);
 }
 
@@ -33,7 +33,7 @@ void colorcalc() {
     float fred = (float)red / 255;
     float fgreen = (float)green / 255;
     float fblue = (float)blue / 255;
-    Serial.println("calc");
+    //Serial.println("calc");
     for (int i = 0; i < pixels.numPixels(); i++)
     {
       z = abs(1 + (1) ^ ((i - p) ^ 2));
@@ -49,7 +49,7 @@ void colorcalc() {
 }
 
 void transition() {
-  Serial.println("transitoin");
+  //Serial.println("transitoin");
   for (int i = 0; i < pixels.numPixels(); i++)
   {
     statenow[i][0] = statenow[i][0] + spe * ((float)statethen[i][0] - (float)statenow[i][0]);
@@ -60,7 +60,7 @@ void transition() {
 }
 
 void updateLED() {
-  Serial.println("updateLED");
+  //Serial.println("updateLED");
   if (modus == 2) {
     for (int i = 0; i < pixels.numPixels(); i++) {
       pixels.setPixelColor(i, pixels.Color(statenow[i][0], statenow[i][1], statenow[i][2], statenow[i][3]));
